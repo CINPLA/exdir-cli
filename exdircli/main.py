@@ -33,15 +33,18 @@ def list_impl(args):
     directory = args.group or '.'
     verify_inside(directory)
     obj = exdir.core.open_object(directory)
-    if not isinstance(obj, exdir.core.Group):
+    if isinstance(obj, exdir.core.Group):
+        for sub in obj.values():
+            if isinstance(sub, exdir.core.Group):
+                cprint(sub.object_name, 'blue', attrs=['bold'])
+            else:
+                print(sub.object_name)
+    elif isinstance(obj, exdir.core.Dataset):
         print(obj.object_name)
-        return
-    for sub in obj.values():
-        if isinstance(sub, exdir.core.Group):
-            cprint(sub.object_name, 'blue', attrs=['bold'])
-        else:
-            print(sub.object_name)
-
+    else:
+        print("Cannot list object of this type:", obj)
+        return 1
+        
 
 def info(args):
     directory = args.object or '.'
@@ -106,7 +109,12 @@ def main():
 
     args = parser.parse_args()
 
-    return args.func(args)
+    try:
+        args.func
+    except AttributeError:
+        print("ERROR: Unknown command")
+        return 1
 
+    return args.func(args)
 if __name__ == "__main__":
     sys.exit(main())
