@@ -9,10 +9,10 @@ import os.path
 try:
     from termcolor import colored, cprint
 except ImportError:
-    def colored(value, **attrs):
+    def colored(value, *args, **kwargs):
         return value
         
-    def cprint(value, **attrs):
+    def cprint(value, *args, **kwargs):
         return value
 try:
     import colorama
@@ -118,3 +118,8 @@ def main():
     return args.func(args)
 if __name__ == "__main__":
     sys.exit(main())
+
+def test(lol, *blah, **args):
+    print("Hello")
+    
+test("hahah", "loL", "woop", haha="blue")
