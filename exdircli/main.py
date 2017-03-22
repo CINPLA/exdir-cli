@@ -118,8 +118,3 @@ def main():
     return args.func(args)
 if __name__ == "__main__":
     sys.exit(main())
-
-def test(lol, *blah, **args):
-    print("Hello")
-    
-test("hahah", "loL", "woop", haha="blue")
