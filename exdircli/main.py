@@ -13,7 +13,7 @@ except ImportError:
         return value
         
     def cprint(value, *args, **kwargs):
-        return value
+        print(value)
 try:
     import colorama
     colorama.init()
