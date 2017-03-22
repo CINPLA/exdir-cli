@@ -2,7 +2,7 @@ package:
     name: exdir-cli
     version: {{ environ.get("GIT_TAG", "0.0.0_custom")|replace("v", "")|replace("-", "_") }}
 source:
-    git_url: .
+    git_url: ..
 build:
     script: python setup.py install
 requirements:
