@@ -29,7 +29,7 @@ def verify_inside(directory):
         sys.exit(1)
 
 
-def list_impl(args):
+def list_(args):
     directory = args.group or '.'
     verify_inside(directory)
     obj = exdir.core.open_object(directory)
@@ -96,7 +96,7 @@ def main():
 
     list_parser = subparsers.add_parser('list', aliases=['ls'])
     list_parser.add_argument('group', help="directory to list", default=None, nargs='?')
-    list_parser.set_defaults(func=list_impl)
+    list_parser.set_defaults(func=list_)
 
     view_parser = subparsers.add_parser('show')
     view_parser.add_argument('object', help="object to show", default=None, nargs='?')
