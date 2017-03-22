@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 long_description = open("README.md").read()
 
 setup(
-    name="Exdir CLI",
+    name="exdir-cli",
     packages=find_packages(),
     include_package_data=True,
     entry_points='''
