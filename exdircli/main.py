@@ -117,15 +117,26 @@ def info(name):
     verify_inside(name)
     obj = exdir.core.open_object(name)
     if isinstance(obj, exdir.core.Group):
-        print("Group:", obj.object_name)
-        print("Item count:", len(list(obj.keys())))
+        if isinstance(obj, exdir.core.File):
+            print("__root__")
+            print("Type: File")
+        else:
+            print(obj.object_name)
+            print("Type: Group")
+        print("Name:", obj.name)
+        item_count = len(list(obj.keys()))
+        print("Item count:", item_count)
         return 0
     if isinstance(obj, exdir.core.Dataset):
-        print("Dataset:", obj.object_name)
+        print(obj.object_name)
+        print("Type: Dataset")
+        print("Name:", obj.name)
         print("Shape:", obj.shape)
         return 0
     if isinstance(obj, exdir.core.Raw):
-        print("Raw:", obj.object_name)
+        print(obj.object_name)
+        print("Type: Raw")
+        print("Name:", obj.name)
         return 0
 
 
@@ -208,7 +219,7 @@ def name(name):
 
 @cli.command()
 @click.argument("name")
-def init(name):
+def create(name):
     """
     Create new exdir directory.
     
