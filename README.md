@@ -40,5 +40,5 @@ Data:
 
 ## Documentation ##
 
-This project is currently undocumented.
-Please use `exdir --help` to list available commands.
+Use `exdir --help` to list available commands.
+More documentation will be added at a later point in time.
