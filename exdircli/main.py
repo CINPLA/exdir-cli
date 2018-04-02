@@ -75,7 +75,7 @@ def list_(name, color, **args):
     
     verify_inside(name)
     try:
-        obj = exdir.core.open_object(name)
+        obj = exdir.core.exdir_object.open_object(name)
     except KeyError:
         return 0
             
@@ -115,7 +115,8 @@ def info(name):
     
     """    
     verify_inside(name)
-    obj = exdir.core.open_object(name)
+    # TODO replace internal dependency with public API
+    obj = exdir.core.exdir_object.open_object(name)
     if isinstance(obj, exdir.core.Group):
         if isinstance(obj, exdir.core.File):
             print("__root__")
@@ -198,7 +199,8 @@ def create_group(name):
     An empty group NAME is created.
     """
     verify_inside(name)
-    obj = exdir.core.open_object(".")
+    # TODO replace internal dependency with public API
+    obj = exdir.core.exdir_object.open_object(".")
     if not isinstance(obj, exdir.core.Group):
         print("ERROR: '{}' is not a group".format(name))
     try:
@@ -215,7 +217,8 @@ def name(name):
     
     The name of object with NAME is returned.
     """
-    print(exdir.core.open_object(name).name)
+    # TODO replace internal dependency with public API
+    print(exdir.core.exdir_object.open_object(name).name)
 
 
 @cli.command()
