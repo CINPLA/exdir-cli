@@ -3,7 +3,6 @@ from __future__ import print_function
 import argparse
 import sys
 import exdir
-import yaml
 import os
 import os.path
 import click
@@ -48,7 +47,8 @@ def cli():
 
 def verify_inside(name):
     try:
-        exdir.core.assert_inside_exdir(name)
+        # TODO replace internal dependency with public functions
+        exdir.core.exdir_object.assert_inside_exdir(name)
     except FileNotFoundError:
         print("ERROR:", os.path.abspath(name), "is not inside a exdir repository.")
         sys.exit(1)
@@ -153,7 +153,8 @@ def show(name, **args):
     which shows entire dataset (this can be slow).
     """
     verify_inside(name)
-    obj = exdir.core.open_object(name)
+    # TODO replace internal dependency with public API
+    obj = exdir.core.exdir_object.open_object(name)
     
     if args.get("all"):
         import numpy as np
