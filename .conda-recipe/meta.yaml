@@ -12,6 +12,7 @@ requirements:
         - future
         - python
         - exdir
+        - click
 test:
   script:
     exdir --help
