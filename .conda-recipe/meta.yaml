@@ -4,6 +4,7 @@ package:
 source:
     git_url: ..
 build:
+    noarch: python
     script: python setup.py install
 requirements:
     build:
